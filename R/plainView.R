@@ -71,7 +71,6 @@ if ( !isGeneric('plainView') ) {
 #' @importFrom grDevices grey.colors dev.off col2rgb rgb
 #' @importFrom viridisLite inferno
 #' @importFrom raster raster as.matrix subset sampleRegular fromDisk filename bandnr projection nrow ncol ncell
-#' @importFrom gdalUtils gdal_translate
 #' @importFrom png writePNG
 #' @importFrom lattice do.breaks level.colors draw.colorkey
 #' @importFrom stats quantile
@@ -98,17 +97,29 @@ setMethod('plainView', signature(x = 'RasterLayer'),
             fl <- paste0(dir, "/img", ".png")
 
             if (raster::fromDisk(x) & gdal) {
-              gdalUtils::gdal_translate(src_dataset = raster::filename(x),
-                                        dst_dataset = fl,
-                                        of = "PNG",
-                                        b = raster::bandnr(x),
-                                        verbose = verbose)
-              # tmp = sf::gdal_utils(util = "translate",
-              #                      source = raster::filename(x),
-              #                      destination = fl,
-              #                      options = c("-of", "PNG", "-b",
-              #                                  as.character(raster::bandnr(x)),
-              #                                  "-scale", "-ot", "Byte"))
+              # gdalUtilities::gdal_translate(
+              #   src_dataset = raster::filename(x)
+              #   , dst_dataset = fl
+              #   , of = "PNG"
+              #   , b = raster::bandnr(x)
+              # )
+              stopifnot(
+                "please install.packages('sf') to be able to use plainview for
+                viewing files from disk" = requireNamespace("sf")
+
+              )
+              sf::gdal_utils(
+                util = "translate"
+                , source = raster::filename(x)
+                , destination = fl
+                , options = c(
+                  "-of", "PNG"
+                  , "-b", as.character(raster::bandnr(x))
+                  , "-scale"
+                  , "-ot", "Byte"
+                )
+              )
+              cat("sf_seems_to_work\n")
             } else {
               png <- raster2PNG(x,
                                 col.regions = col.regions,
@@ -289,7 +300,7 @@ plainViewInternal <- function(filename, imgnm, crs, dims, leg_fl = NULL) {
   htmlwidgets::createWidget(
     name = 'plainView',
     x = x,
-    package = 'mapview',
+    package = 'plainview',
     dependencies = deps,
     sizingPolicy = sizing
   )
@@ -323,7 +334,7 @@ plainViewInternal <- function(filename, imgnm, crs, dims, leg_fl = NULL) {
 #' @export
 plainViewOutput <- function(outputId, width = '100%', height = '400px'){
   htmlwidgets::shinyWidgetOutput(outputId, 'plainView',
-                                 width, height, package = 'mapview')
+                                 width, height, package = 'plainview')
 }
 
 #' @param expr An expression that generates an HTML widget

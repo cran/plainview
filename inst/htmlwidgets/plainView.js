@@ -85,7 +85,8 @@ function init(root, filename, name, crs, dims, legend_filename) {
 	canvas.onmouseup = onmouseup;
 	canvas.onmousemove = onmousemove;
 	canvas.onwheel = onwheel;
-	canvas.onmousewheel =  onmousewheel;
+	canvas.onmousewheel = onmousewheel;
+	canvas.onclick = onclick;
 
 	window.addEventListener("keydown", onkeydown, true);
 
@@ -242,5 +243,23 @@ function onkeydown(e) {
 
 }
 
+function onclick(e) {
+  var rect = canvas.getBoundingClientRect();
+  var x = e.clientX - rect.left;
+  var y = e.clientY - rect.top;
+  var px = x / scale - offsetX;
+  var py = y / scale - offsetY;
 
+  if (HTMLWidgets.shinyMode) {
+    Shiny.setInputValue("image_click", {
+      //id: layerId ? layerId[idx] : idx+1,
+      //group: pointslayer.settings.className,
+      x: Math.ceil(px),
+      y: Math.ceil(py),
+      //data: content
+    });
+  }
+
+  console.log("x: " + Math.ceil(px) + ", y: " + Math.ceil(py));
+}
 
