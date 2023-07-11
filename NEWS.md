@@ -1,10 +1,6 @@
-## plainview 0.2.0 (2022-04-10)
+# plainview 0.2.1 (2023-07-11)
 
-#### ✨ features and improvements
-
-#### 🐛 bug fixes
-
-#### 💬 documentation etc
+  * check R version against character not numeric (mail from R core).
 
 #### 🍬 miscellaneous
 

@@ -1,10 +1,10 @@
-4737f600af4c8ab3b2af14e8c876ce5e *DESCRIPTION
+8843d3bcac73d255c578c86b09ae58aa *DESCRIPTION
 42484cac8ef3a6bb6bfb8caa0f80af66 *LICENSE
 1cf729472819abbb87fa6a80cd38361e *NAMESPACE
-be6068342a370caae78214e4ae5cc562 *NEWS
-55d50f699184dd71f717cbfe518a6e87 *NEWS.md
+c688ffd452d17c73063fa347d298082f *NEWS
+d6a1dd1db7b106ef96da49ada09ede29 *NEWS.md
 a98dfb99341dfac7d45e1416a89c127b *R/color.R
-f1176f32771e78cbe0b8b8f78da29153 *R/helpers.R
+d9b17e866835f6eebf6020cdf51ea08e *R/helpers.R
 2f47d40bfe2d864cc0923f471f9208b1 *R/legend.R
 8c0ba2def95a3f86f9159decc74c8011 *R/plainView.R
 541b1f00c0494b41d6dcbc6085b43b7c *R/plainview-package.R
@@ -17,7 +17,7 @@ c80711f9e2ae97d29dbe7da1fbab4a89 *inst/htmlwidgets/plainView.yaml
 e93f7177b7874aff44a2d0e7dbb819c6 *man/figures/README-layer.png
 8e049d5e80ca7b326d28cfa38fe5bb16 *man/figures/README-stack_false.png
 5aa001777f6352f980122594acc59863 *man/figures/README-stack_true.png
-9cb6af58633ae00d6f59fc024fc456bc *man/plainView.Rd
+cc2762449e6c507bd41a323541572e89 *man/plainView.Rd
 63baacfe40bd621331d131c3368fefbf *man/plainViewOutput.Rd
 4eeb3f4b257ca6da3d7b50f5bc1347b9 *man/plainview-package.Rd
 4ae4d1d1ffc14838bd9c9dc840e36a17 *man/poppendorf.Rd
